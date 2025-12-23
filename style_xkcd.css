@@ -1,0 +1,180 @@
+/* xkcd-themed stylesheet
+   - Uses a hand-drawn font (Patrick Hand) for an xkcd-like look.
+   - Adds sketched borders, tilted headings, hand-drawn bullets and panels.
+   - Works with fallbacks if the font isn't available.
+   Tip: include the Google Font in your HTML head for best results:
+   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root{
+  --paper: #ffffff;
+  --bg: #f4f6f7;
+  --ink: #111111;
+  --muted: #6b6b6b;
+  --accent: #0867c6; /* link accent */
+}
+
+/* Page */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Patrick Hand', 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height: 1.45;
+}
+
+/* Main frame: bold hand-drawn border and "shadow" that looks like a quick pen stroke */
+.container {
+  max-width: 670px;
+  margin: 2.2em auto;
+  padding: 2.2em;
+  background: linear-gradient(#fff 0 100%);
+  border: 2px solid #000;
+  border-radius: 6px;
+  /* heavy offset shadow to simulate a quick sketch shadow */
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.95);
+  position: relative;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.profile {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #000; /* thick black outline like a sketch */
+  margin-bottom: 1em;
+  background: #eee;
+  display: inline-block;
+}
+
+/* Headings — slightly rotated for a hand-drawn tilt */
+h1 {
+  font-size: 2.4em;
+  margin: 0;
+  letter-spacing: 0.02em;
+  transform: rotate(-1deg);
+  display: inline-block;
+  padding: 0 0.15em;
+}
+
+h2 {
+  font-size: 1.25em;
+  margin: 0.25em 0 0.1em 0;
+  color: var(--muted);
+  transform: rotate(0.5deg);
+}
+
+h3 {
+  font-size: 1.1em;
+  color: #444;
+  font-weight: normal;
+  margin: 0 0 1em 0;
+  transform: rotate(-0.4deg);
+}
+
+/* Section spacing */
+section {
+  margin-bottom: 1.5em;
+}
+
+/* Section title style like a little caption */
+h4 {
+  margin-bottom: 0.45em;
+  color: var(--ink);
+  font-weight: bold;
+  transform: rotate(-0.6deg);
+}
+
+/* Lists: use custom hand-drawn bullets */
+ul {
+  list-style: none;
+  margin: 0 0 0 1.2em;
+  padding: 0;
+}
+
+ul li {
+  position: relative;
+  margin-bottom: 0.55em;
+  padding-left: 1.35em;
+}
+
+/* custom bullet to look like a slightly imperfect dot */
+ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  font-size: 1.25em;
+  color: var(--ink);
+  transform: rotate(-12deg);
+  line-height: 1;
+  text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.07);
+}
+
+/* Links: simple blue, subtly underlined like xkcd captions */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(8,103,198,0.12);
+  transition: all 120ms ease;
+}
+a:hover {
+  text-decoration: underline;
+  border-bottom-color: rgba(8,103,198,0.3);
+}
+
+/* Simple thin rule that looks hand-drawn (slightly rotated) */
+hr {
+  border: none;
+  border-top: 2px solid #000;
+  width: 60%;
+  margin: 1.2em auto;
+  transform: rotate(-0.6deg);
+}
+
+/* Quote / comic panels: boxed with a quick sketch border */
+blockquote, .comic-panel {
+  border: 2px solid #000;
+  padding: 0.9em 1em;
+  background: var(--paper);
+  border-radius: 4px;
+  margin: 0.8em 0;
+  transform: rotate(0.6deg);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.95);
+  font-size: 1.05em;
+}
+
+/* Code snippets or small captions — use monospace but keep hand-drawn vibe */
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  background: #f7f7f7;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Footer — small and muted */
+footer {
+  text-align: center;
+  margin: 2em 0 1em 0;
+  color: var(--muted);
+  font-size: 0.95em;
+}
+
+/* Small responsive tweaks */
+@media (max-width: 420px) {
+  .container { padding: 1.2em; margin: 1em; }
+  h1 { font-size: 1.8em; }
+  .profile { width: 86px; height: 86px; }
+}
